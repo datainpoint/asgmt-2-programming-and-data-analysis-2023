@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "classroom-programming-and-data-analysis-2023"
+version = "0.1.0"
+description = ""
+authors = ["Yao-Jen Kuo <yaojenkuo@ntu.edu.tw>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10.0,<3.11"
+
+[tool.poetry.dev-dependencies]
+debugpy = "^1.6.2"
+replit-python-lsp-server = {extras = ["yapf", "rope", "pyflakes"], version = "^1.5.9"}
+toml = "^0.10.2"
+poetry = {url = "https://storage.googleapis.com/poetry-bundles/poetry-1.1.15-py2.py3-none-any.whl"}
+urllib3 = "1.26.15"
+data-science-types = "0.2.23"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
