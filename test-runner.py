@@ -1,0 +1,86 @@
+import unittest
+import importlib
+
+class TestAssignmentTwo(unittest.TestCase):
+    def test_01_are_all_vowels_contained(self):
+        self.assertFalse(asgmt.are_all_vowels_contained('python'))
+        self.assertFalse(asgmt.are_all_vowels_contained('anaconda'))
+        self.assertFalse(asgmt.are_all_vowels_contained('reticulate'))
+        self.assertFalse(asgmt.are_all_vowels_contained('cobra'))
+        self.assertFalse(asgmt.are_all_vowels_contained('mamba'))
+        self.assertTrue(asgmt.are_all_vowels_contained('anaconda and reticulate'))
+    def test_02_convert_bools_to_yes_no(self):
+        self.assertEqual(asgmt.convert_bools_to_yes_no(False), 'No')
+        self.assertEqual(asgmt.convert_bools_to_yes_no(True), 'Yes')
+    def test_03_convert_bools_to_heads_or_tails(self):
+        self.assertEqual(asgmt.convert_bools_to_heads_or_tails(False), 'Tails')
+        self.assertEqual(asgmt.convert_bools_to_heads_or_tails(True), 'Heads')
+    def test_04_convert_integers_to_weekdays(self):
+        self.assertEqual(asgmt.convert_integers_to_weekdays(0), 'Sunday')
+        self.assertEqual(asgmt.convert_integers_to_weekdays(1), 'Monday')
+        self.assertEqual(asgmt.convert_integers_to_weekdays(2), 'Tuesday')
+        self.assertEqual(asgmt.convert_integers_to_weekdays(3), 'Wednesday')
+        self.assertEqual(asgmt.convert_integers_to_weekdays(4), 'Thursday')
+        self.assertEqual(asgmt.convert_integers_to_weekdays(5), 'Friday')
+        self.assertEqual(asgmt.convert_integers_to_weekdays(6), 'Saturday')
+    def test_05_convert_month_names_to_integers(self):
+        self.assertEqual(asgmt.convert_month_names_to_integers('January'), 1)
+        self.assertEqual(asgmt.convert_month_names_to_integers('February'), 2)
+        self.assertEqual(asgmt.convert_month_names_to_integers('March'), 3)
+        self.assertEqual(asgmt.convert_month_names_to_integers('April'), 4)
+        self.assertEqual(asgmt.convert_month_names_to_integers('September'), 9)
+        self.assertEqual(asgmt.convert_month_names_to_integers('October'), 10)
+        self.assertEqual(asgmt.convert_month_names_to_integers('November'), 11)
+        self.assertEqual(asgmt.convert_month_names_to_integers('December'), 12)
+    def test_06_describe_bmi(self):
+        self.assertEqual(asgmt.describe_bmi(172, 50), 'Underweight')
+        self.assertEqual(asgmt.describe_bmi(172, 65), 'Normal weight')
+        self.assertEqual(asgmt.describe_bmi(175, 100), 'Overweight')
+        self.assertEqual(asgmt.describe_bmi(172, 45), 'Underweight')
+        self.assertEqual(asgmt.describe_bmi(175, 110), 'Overweight')
+    def test_07_is_upper_or_lower_cased(self):
+        self.assertEqual(asgmt.is_upper_or_lower_cased("a"), 'Lower-cased')
+        self.assertEqual(asgmt.is_upper_or_lower_cased("z"), 'Lower-cased')
+        self.assertEqual(asgmt.is_upper_or_lower_cased("e"), 'Lower-cased')
+        self.assertEqual(asgmt.is_upper_or_lower_cased("b"), 'Lower-cased')
+        self.assertEqual(asgmt.is_upper_or_lower_cased("y"), 'Lower-cased')
+        self.assertEqual(asgmt.is_upper_or_lower_cased("A"), 'Upper-cased')
+        self.assertEqual(asgmt.is_upper_or_lower_cased("Z"), 'Upper-cased')
+        self.assertEqual(asgmt.is_upper_or_lower_cased("E"), 'Upper-cased')
+        self.assertEqual(asgmt.is_upper_or_lower_cased("B"), 'Upper-cased')
+        self.assertEqual(asgmt.is_upper_or_lower_cased("Y"), 'Upper-cased')
+    def test_08_reverse_vowel(self):
+        self.assertEqual(asgmt.reverse_vowel("a"), 'A')
+        self.assertEqual(asgmt.reverse_vowel("A"), 'a')
+        self.assertEqual(asgmt.reverse_vowel("z"), 'z')
+        self.assertEqual(asgmt.reverse_vowel("Z"), 'Z')
+        self.assertEqual(asgmt.reverse_vowel("e"), 'E')
+        self.assertEqual(asgmt.reverse_vowel("E"), 'e')
+        self.assertEqual(asgmt.reverse_vowel("b"), 'b')
+        self.assertEqual(asgmt.reverse_vowel("B"), 'B')
+        self.assertEqual(asgmt.reverse_vowel("i"), 'I')
+        self.assertEqual(asgmt.reverse_vowel("I"), 'i')
+    def test_09_categorize_nikes_running_shoes(self):
+        self.assertEqual(asgmt.categorize_nikes_running_shoes(False, False, False), 'Pegasus')
+        self.assertEqual(asgmt.categorize_nikes_running_shoes(False, False, True), 'Tempo')
+        self.assertEqual(asgmt.categorize_nikes_running_shoes(True, False, False), 'Turbo')
+        self.assertEqual(asgmt.categorize_nikes_running_shoes(True, True, False), 'Vaporfly')
+        self.assertEqual(asgmt.categorize_nikes_running_shoes(True, True, True), 'Alphafly')
+    def test_10_sing_do_re_mi(self):
+        self.assertEqual(asgmt.sing_do_re_mi("Do"), 'a deer, a female deer.')
+        self.assertEqual(asgmt.sing_do_re_mi("Re"), 'a drop of golden sun.')
+        self.assertEqual(asgmt.sing_do_re_mi("Mi"), 'a name I call myself.')
+        self.assertEqual(asgmt.sing_do_re_mi("Fa"), 'a long long way to run.')
+        self.assertEqual(asgmt.sing_do_re_mi("So"), 'a needle pulling thread.')
+        self.assertEqual(asgmt.sing_do_re_mi("La"), 'a note to follow so.')
+        self.assertEqual(asgmt.sing_do_re_mi("Ti"), 'a drink with jam and bread.')
+
+asgmt = importlib.import_module("asgmt-two")
+suite = unittest.TestLoader().loadTestsFromTestCase(TestAssignmentTwo)
+runner = unittest.TextTestRunner(verbosity=2)
+test_results = runner.run(suite)
+number_of_failures = len(test_results.failures)
+number_of_errors = len(test_results.errors)
+number_of_test_runs = test_results.testsRun
+number_of_successes = number_of_test_runs - (number_of_failures + number_of_errors)
+print("You've got {} successes among {} questions.".format(number_of_successes, number_of_test_runs))
